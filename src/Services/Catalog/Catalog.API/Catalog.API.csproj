@@ -19,4 +19,8 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Basket\Basket.API\Basket.API.csproj" />
+  </ItemGroup>
+
 </Project>

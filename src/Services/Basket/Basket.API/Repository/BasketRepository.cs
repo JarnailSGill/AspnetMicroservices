@@ -19,15 +19,10 @@ namespace Basket.API.Repository
         {
             var basket = await _redisCache.GetStringAsync(userName);
 
-            if (basket is null)
-                throw new ApplicationException("basket is null");
+            if (String.IsNullOrEmpty(basket))
+                return null;
 
-            var ret = JsonConvert.DeserializeObject<ShoppingCart>(basket);
-
-            if (ret is null)
-                throw new ApplicationException("ret is null");
-
-            return ret;
+            return JsonConvert.DeserializeObject<ShoppingCart>(basket);
 
         }
 
