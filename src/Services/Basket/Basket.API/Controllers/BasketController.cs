@@ -16,7 +16,7 @@ namespace Basket.API.Controllers
         public BasketController(IBasketRepository repository, DiscountgRPCService discountgRpcService)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
-            _discountgRpcService = discountgRpcService ?? throw new ArgumentNullException(nameof(discountgRpcService)); ;
+            _discountgRpcService = discountgRpcService ?? throw new ArgumentNullException(nameof(discountgRpcService)); 
         }
 
         

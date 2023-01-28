@@ -27,5 +27,6 @@ namespace Ordering.Application.Features.Orders.Commands.CheckoutOrder
         public string Expiration { get; set; }
         public string CVV { get; set; }
         public int PaymentMethod { get; set; }
+
     }
 }
