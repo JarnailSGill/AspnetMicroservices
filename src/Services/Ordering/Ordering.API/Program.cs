@@ -1,3 +1,6 @@
+using EventBus.Messages.Common;
+using MassTransit;
+using Microsoft.Extensions.Configuration;
 using Ordering.API.Extensions;
 using Ordering.Application;
 using Ordering.Domain.Entities;
@@ -5,6 +8,7 @@ using Ordering.Infrastructure;
 using Ordering.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
+ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
 
@@ -14,6 +18,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
+
+
+// MassTransit-RabbitMQ Configuration
+builder.Services.AddMassTransit(config => {
+
+    config.UsingRabbitMq((ctx, cfg) => {
+        cfg.Host(configuration.GetValue<string>("EventBusSettings:HostAddress"));
+    });
+});
 
 var app = builder.Build();
 
